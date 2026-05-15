@@ -3,7 +3,7 @@ Stop wasting tokens with Skills. Just use hooks!
 
 People are telling their coding agents to run this linter, check that type checker, blah blah blah. It's a waste of tokens. You're burning tokens for deterministic processes that should run every time. 
 
-Vibe coders fire and forget. Real engineers use hooks to keep their codebases production safe and maintainable.
+AI-first engineers use hooks to keep their codebases production safe and maintainable.
 
 ## What is a hook?
 
