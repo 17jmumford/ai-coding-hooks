@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/security/block-dangerous-shell.sh\"",
+        "failClosed": true
+      }
+    ],
+    "preToolUse": [
+      {
+        "matcher": "Shell",
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/security/block-dangerous-shell.sh\"",
+        "failClosed": true
+      },
+      {
+        "matcher": "Read",
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/security/block-secret-reads.sh\"",
+        "failClosed": true
+      }
+    ],
+    "beforeReadFile": [
+      {
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/security/block-secret-reads.sh\"",
+        "failClosed": true
+      }
+    ],
+    "postToolUse": [
+      {
+        "matcher": "Write",
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/quality/eslint-after-edit.sh\""
+      },
+      {
+        "matcher": "Write",
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/quality/prettier-after-edit.sh\""
+      },
+      {
+        "matcher": "Write",
+        "command": "python3 \"$(git rev-parse --show-toplevel)/hooks/quality/ruff-after-edit.py\""
+      },
+      {
+        "matcher": "Write",
+        "command": "python3 \"$(git rev-parse --show-toplevel)/hooks/quality/ty-after-edit.py\""
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "matcher": "Write",
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/quality/eslint-after-edit.sh\""
+      },
+      {
+        "matcher": "Write",
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/quality/prettier-after-edit.sh\""
+      },
+      {
+        "matcher": "Write",
+        "command": "python3 \"$(git rev-parse --show-toplevel)/hooks/quality/ruff-after-edit.py\""
+      },
+      {
+        "matcher": "Write",
+        "command": "python3 \"$(git rev-parse --show-toplevel)/hooks/quality/ty-after-edit.py\""
+      }
+    ],
+    "stop": [
+      {
+        "command": "python3 \"$(git rev-parse --show-toplevel)/hooks/quality/test-before-stop.py\"",
+        "timeout": 600
+      }
+    ]
+  }
+}
