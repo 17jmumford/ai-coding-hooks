@@ -48,7 +48,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "env AI_HOOKS_AGENT=codex python3 \"$(git rev-parse --show-toplevel)/hooks/quality/test-before-stop.py\"",
+            "command": "env AI_HOOKS_AGENT=codex python3 \"$(git rev-parse --show-toplevel)/hooks/quality/pytest-before-stop.py\"",
+            "timeout": 600
+          },
+          {
+            "type": "command",
+            "command": "env AI_HOOKS_AGENT=codex bash \"$(git rev-parse --show-toplevel)/hooks/quality/npm-test-before-stop.sh\"",
             "timeout": 600
           }
         ]

@@ -5,7 +5,7 @@ Copy [`hooks/`](../hooks/) into your repo, then merge [`settings.json`](settings
 ## Which binary
 
 - **`hooks/security/*.sh`** — `bash` + **`jq`** on `PATH` (no Python).
-- **`hooks/quality/*.sh`** (ESLint, Prettier) — **bash**, **`jq`**, and **Node (`npx`)**.
+- **`hooks/quality/*.sh`** (ESLint, Prettier, **npm-test-before-stop**) — **bash**, **`jq`**, and **Node (`npx` / `npm`)** as needed.
 - **`hooks/quality/*.py`** — **Python 3.10+** plus your tools (`ruff`, `ty`, `pytest`, etc.).
 
 ## Example command

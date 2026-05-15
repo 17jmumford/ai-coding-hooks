@@ -1,6 +1,6 @@
 # Hook capability matrix (Claude Code, Cursor, Codex)
 
-This repository targets three coding agents: Claude Code, Cursor, and Codex. Each hook is a **single file** (`*.sh` for security and TS lint/format checks, `*.py` for Python lint and stop-gate tests). Optional git/CI fallbacks are described in each agent README ([`claude-code/README.md`](../claude-code/README.md), [`cursor/README.md`](../cursor/README.md), [`codex/README.md`](../codex/README.md)).
+This repository targets three coding agents: Claude Code, Cursor, and Codex. Each hook is a **single file** (`*.sh` for security, TS lint/format checks, and the npm stop gate; `*.py` for Python lint, typing, and the pytest stop gate). Optional git/CI fallbacks are described in each agent README ([`claude-code/README.md`](../claude-code/README.md), [`cursor/README.md`](../cursor/README.md), [`codex/README.md`](../codex/README.md)).
 
 | Capability | Claude Code | Cursor | Codex |
 |------------|-------------|--------|--------|

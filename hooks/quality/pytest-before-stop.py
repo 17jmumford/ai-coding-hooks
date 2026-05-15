@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Self-contained: run tests before Stop. Requires Python 3.10+."""
+"""Stop hook: run ``pytest -q`` at cwd when a Python project is detected. Requires Python 3.10+."""
 
 from __future__ import annotations
 
@@ -58,48 +58,33 @@ def _cwd(data: dict[str, Any]) -> Path:
     return Path(str(data.get("cwd") or os.getcwd())).resolve()
 
 
-def _run_tests(cwd: Path, timeout: int = 600) -> tuple[bool, str]:
-    if (cwd / "package.json").exists():
-        npm = shutil.which("npm")
-        if not npm:
-            return True, "npm not installed; skipped"
-        p = subprocess.run(
-            [npm, "test"],
-            cwd=str(cwd),
-            capture_output=True,
-            text=True,
-            timeout=timeout,
-            check=False,
-            env={**os.environ, "CI": "true"},
-        )
-        tail = (p.stdout + "\n" + p.stderr)[-8000:]
-        return p.returncode == 0, tail or "(empty output)"
-    if (cwd / "pyproject.toml").exists() or (cwd / "setup.py").exists():
-        pytest = shutil.which("pytest")
-        if not pytest:
-            return True, "pytest not installed; skipped"
-        p = subprocess.run(
-            [pytest, "-q"],
-            cwd=str(cwd),
-            capture_output=True,
-            text=True,
-            timeout=timeout,
-            check=False,
-        )
-        tail = (p.stdout + "\n" + p.stderr)[-8000:]
-        return p.returncode == 0, tail or "(empty output)"
-    return True, "no package.json or Python project markers; skipped"
+def _run_pytest(cwd: Path, timeout: int = 600) -> tuple[bool, str]:
+    if not (cwd / "pyproject.toml").exists() and not (cwd / "setup.py").exists():
+        return True, "no pyproject.toml or setup.py; skipped"
+    pytest = shutil.which("pytest")
+    if not pytest:
+        return True, "pytest not installed; skipped"
+    p = subprocess.run(
+        [pytest, "-q"],
+        cwd=str(cwd),
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+        check=False,
+    )
+    tail = (p.stdout + "\n" + p.stderr)[-8000:]
+    return p.returncode == 0, tail or "(empty output)"
 
 
 def main() -> int:
     data = _read_stdin()
     host = _detect_host(data)
     cwd = _cwd(data)
-    ok, details = _run_tests(cwd)
+    ok, details = _run_pytest(cwd)
     if ok:
         _write_out(_allow_empty(host, data))
         return 0
-    msg = "Tests failed; fix failures before finishing.\n" + details
+    msg = "pytest failed; fix failures before finishing.\n" + details
     if host is Host.CURSOR:
         _write_out({"followup_message": msg[:8000]})
         return 0
