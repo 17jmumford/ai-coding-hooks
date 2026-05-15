@@ -8,19 +8,21 @@ AI-first engineers use hooks to keep their codebases production safe and maintai
 ## What is a hook?
 
 ```
-Hooks let you observe, control, and extend the agent loop using custom scripts. Hooks are spawned processes that communicate over stdio using JSON in both directions. They run before or after defined stages of the agent loop and can observe, block, or modify behavior.
+Hooks let you observe, control, and extend the agent loop using custom scripts.
+Hooks are spawned processes that communicate over stdio using JSON in both directions.
+They run before or after defined stages of the agent loop and can observe, block, or modify behavior.
+- Cursor Docs
 ```
--- Cursor
 
-Hooks let you inject scripts for the stuff you care about. For example, always run a type checker and linter after an agent edits a file. The hard part is know which hooks you should use. 
+Hooks let you inject scripts for the stuff you care about. For example, always run a type checker and linter after an agent edits a file. The hard part is knowing which hooks you should use. 
 
 ## How do I use this repo?
 
-This repo is full of extremely useful hooks, organized by coding language, framework, and other categories.
+This repo is full of useful hooks, organized by coding language, framework, and other categories.
 
-Your AI coding agent can likely figure out which of these are most useful. For example, if you are in a mature codebase that is already using Ruff, you'll want to use the Ruff hook. If you're in a new project, adding several hooks at the beginning can put guardrails on your codebase that keep in maintainable into production.
+Your AI coding agent can figure out which of these are most useful. For example, if you are in a mature codebase that is already using Ruff, you'll want to use the Ruff hook. If you're in a new project, adding several hooks at the beginning can put guardrails on your codebase that keep in maintainable into production.
 
-It's also very easy to just copy/paste code from this repo. These are primarily bash scripts, so they are highly portable. 
+It's also very easy to just copy/paste code from this repo. These are primarily bash and Python scripts, so they are highly portable. 
 
 ## Why do things like linters and type checkers matter in AI coding?
 
