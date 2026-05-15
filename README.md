@@ -9,9 +9,7 @@ AI-first engineers use hooks to keep their codebases production safe and maintai
 - Lower cost: Save millions of tokens by removing responsibilities from your agent.
 - More secure: Extra guardrails on shell commands and secret reads.
 
-## Quick start for Humans
-
-Give your AI coding agent the link to this repo. They'll take it from there, and ask questions as needed. Alternatively, you can copy and paste stuff out on your own.
+## What are hooks?
 
 > Hooks let you observe, control, and extend the agent loop using custom scripts.
 > Hooks are spawned processes that communicate over stdio using JSON in both directions.
@@ -20,6 +18,10 @@ Give your AI coding agent the link to this repo. They'll take it from there, and
 > — [Cursor agent hooks](https://cursor.com/docs/agent/hooks)
 
 Hooks let you inject scripts for the stuff you care about. For example, always run a type checker and linter after an agent edits a file. The hard part is knowing which hooks you should use.
+
+## Quick start for Humans
+
+Give your AI coding agent the link to this repo. They'll take it from there, and ask questions as needed. Alternatively, you can copy and paste stuff out on your own.
 
 Hooks basically have two parts:
 
