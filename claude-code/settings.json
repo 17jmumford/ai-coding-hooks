@@ -39,6 +39,14 @@
           {
             "type": "command",
             "command": "python3 \"$(git rev-parse --show-toplevel)/hooks/quality/ty-after-edit.py\""
+          },
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/hooks/quality/terraform-fmt-after-edit.sh\""
+          },
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/hooks/quality/golangci-lint-after-edit.sh\""
           }
         ]
       }

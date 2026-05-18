@@ -41,6 +41,14 @@
       {
         "matcher": "Write",
         "command": "python3 \"$(git rev-parse --show-toplevel)/hooks/quality/ty-after-edit.py\""
+      },
+      {
+        "matcher": "Write",
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/quality/terraform-fmt-after-edit.sh\""
+      },
+      {
+        "matcher": "Write",
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/quality/golangci-lint-after-edit.sh\""
       }
     ],
     "afterFileEdit": [
@@ -59,6 +67,14 @@
       {
         "matcher": "Write",
         "command": "python3 \"$(git rev-parse --show-toplevel)/hooks/quality/ty-after-edit.py\""
+      },
+      {
+        "matcher": "Write",
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/quality/terraform-fmt-after-edit.sh\""
+      },
+      {
+        "matcher": "Write",
+        "command": "bash \"$(git rev-parse --show-toplevel)/hooks/quality/golangci-lint-after-edit.sh\""
       }
     ],
     "stop": [
